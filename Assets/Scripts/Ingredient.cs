@@ -16,7 +16,15 @@ public class Ingredient : Item
         }
         foreach (Transform child in transform)
         {
-            Text += child.GetComponent<Ingredient>().getHoverText();
+            string childHoverText = child.GetComponent<Ingredient>().getHoverText();
+            if(childHoverText != "효과 없음")
+            { 
+                Text += childHoverText; 
+            }
+        }
+        if(Text.Length == 0)
+        {
+            Text = "효과 없음";
         }
         return Text;
     }
