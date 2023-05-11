@@ -34,7 +34,7 @@ public class Boil : Item, IDropHandler, IPointerClickHandler
             GameObject water = Instantiate(boiled);
             foreach (Transform child in transform)
             {
-                if (child.tag == "Ingredient") child.GetComponent<Ingredient>().boil(timeInt, water);
+                if (child.tag == "Ingredient") child.GetComponent<Ingredient>().boil((uint)timeInt, water);
             }
         }
     }

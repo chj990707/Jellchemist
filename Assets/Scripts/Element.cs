@@ -5,11 +5,11 @@ using UnityEngine;
 public class Element : MonoBehaviour
 {
     [SerializeField] protected bool initialized = false;
-    [SerializeField] protected int amount;
+    [SerializeField] protected uint amount;
     [SerializeField] protected string effect;
     [SerializeField] protected int solubility;
 
-    public void Init(int amount, string effect, int solubility)
+    public void Init(uint amount, string effect, int solubility)
     {
         if (!initialized)
         {
@@ -20,7 +20,7 @@ public class Element : MonoBehaviour
         }
     }
 
-    public int getAmount()
+    public uint getAmount()
     {
         return amount;
     }
@@ -33,7 +33,7 @@ public class Element : MonoBehaviour
         return solubility;
     }
 
-    public bool TryAddAmount(string effect, int amount)
+    public bool TryAddAmount(string effect, uint amount)
     {
         Debug.Log(effect + ", " + this.effect);
         if (effect.Equals(this.effect))
@@ -44,9 +44,9 @@ public class Element : MonoBehaviour
         else return false;
     }
 
-    public int boil(int time)
+    public uint boil(uint time)
     {
-        int dissolved = Mathf.Min(amount, solubility * time);
+        uint dissolved = (uint)Mathf.Min(amount, solubility * time);
         amount -= dissolved;
         return dissolved;
     }

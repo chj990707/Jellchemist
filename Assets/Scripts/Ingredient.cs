@@ -56,11 +56,11 @@ public class Ingredient : Item
         Destroy(gameObject);
     }
     
-    public void boil(int time, GameObject water)
+    public void boil(uint time, GameObject water)
     {
         foreach (Element e in gameObject.GetComponents<Element>())
         {
-            int amount = e.boil(time);
+            uint amount = e.boil(time);
             if (amount == 0) continue;
             bool added = false;
             Element[] water_elements = water.GetComponents<Element>();
