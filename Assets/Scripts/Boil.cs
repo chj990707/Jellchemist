@@ -27,12 +27,15 @@ public class Boil : Item, IDropHandler, IPointerClickHandler
     public virtual void boil(string time)
     {
         int timeInt;
-        int.TryParse(time, out timeInt);
-        Debug.Log(time + "분 동안 끓이기");
-        GameObject water = Instantiate(boiled);
-        foreach(Transform child in transform)
+        if(int.TryParse(time, out timeInt))
         {
-            if(child.tag == "Ingredient") child.GetComponent<Ingredient>().boil(timeInt, water);
+            if (timeInt == 0) return;
+            Debug.Log(time + "분 동안 끓이기");
+            GameObject water = Instantiate(boiled);
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "Ingredient") child.GetComponent<Ingredient>().boil(timeInt, water);
+            }
         }
     }
 }
