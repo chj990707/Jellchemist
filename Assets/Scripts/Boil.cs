@@ -29,7 +29,7 @@ public class Boil : Item, IDropHandler, IPointerClickHandler
         int timeInt;
         if(int.TryParse(time, out timeInt))
         {
-            if (timeInt == 0) return;
+            if (timeInt <= 0) return;
             Debug.Log(time + "분 동안 끓이기");
             GameObject water = Instantiate(boiled);
             foreach (Transform child in transform)
