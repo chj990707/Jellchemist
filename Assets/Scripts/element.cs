@@ -33,6 +33,17 @@ public class Element : MonoBehaviour
         return solubility;
     }
 
+    public bool TryAddAmount(string effect, int amount)
+    {
+        Debug.Log(effect + ", " + this.effect);
+        if (effect.Equals(this.effect))
+        {
+            this.amount += amount;
+            return true;
+        }
+        else return false;
+    }
+
     public int boil(int time)
     {
         int dissolved = Mathf.Min(amount, solubility * time);

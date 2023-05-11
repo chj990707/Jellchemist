@@ -62,8 +62,19 @@ public class Ingredient : Item
         {
             int amount = e.boil(time);
             if (amount == 0) continue;
-            Element added = water.AddComponent<Element>();
-            added.Init(amount, e.getEffect(), e.getSolubility());
+            bool added = false;
+            Element[] water_elements = gameObject.GetComponents<Element>();
+            foreach(Element ew in water_elements)
+            {
+                if(ew.TryAddAmount(e.getEffect(), amount))
+                {
+                    added = true;
+                    break;
+                }
+            }
+            if (added) continue;
+            Element newElement = water.AddComponent<Element>();
+            newElement.Init(amount, e.getEffect(), e.getSolubility());
             if (e.getAmount() == 0) Destroy(e);
         }
         foreach (Transform child in transform)
