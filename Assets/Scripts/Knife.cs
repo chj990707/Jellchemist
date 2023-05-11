@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Knife : Item
 {
-    override public void OnMouseUp()
+    public override void OnEndDrag(PointerEventData eventData)
     {
-        base.OnMouseUp();
+        base.OnEndDrag(eventData);
         List<Collider2D> results = new List<Collider2D>();
         Physics2D.OverlapCollider(collider, new ContactFilter2D().NoFilter(), results);
         foreach(Collider2D col in results)

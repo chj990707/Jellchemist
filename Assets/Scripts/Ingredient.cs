@@ -7,13 +7,16 @@ public class Ingredient : Item
     public string getHoverText()
     {
         string Text = string.Empty;
-        foreach (element e in gameObject.GetComponents<element>())
+        foreach (Element e in gameObject.GetComponents<Element>())
         {
-            Text += "\n" + e.getEffect();
+            if (e.getAmount() >= 100) Text += "강한 ";
+            else if (e.getAmount() >= 50) Text += "중간 정도의 ";
+            else Text += "약한 ";
+            Text +=e.getEffect() + ", ";
         }
         foreach (Transform child in transform)
         {
-            Text += "\n" + child.GetComponent<Ingredient>().getHoverText();
+            Text += child.GetComponent<Ingredient>().getHoverText();
         }
         return Text;
     }
@@ -43,5 +46,20 @@ public class Ingredient : Item
         }
         gameObject.transform.DetachChildren();
         Destroy(gameObject);
+    }
+    
+    public void boil(int time, GameObject water)
+    {
+        foreach (Element e in gameObject.GetComponents<Element>())
+        {
+            int amount = e.boil(time);
+            Element added = water.AddComponent<Element>();
+            added.Init(amount, e.getEffect(), e.getSolubility());
+            if (e.getAmount() == 0) Destroy(e);
+        }
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Ingredient>().boil(time, water);
+        }
     }
 }
