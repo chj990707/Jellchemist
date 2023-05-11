@@ -7,8 +7,8 @@ public class FlowerFactory : MonoBehaviour
     [SerializeField] protected GameObject prefabIngredient;
     public void CreateFlower()
     {
+        prefabIngredient.name = "whitebell";
         GameObject newFlower = Instantiate(prefabIngredient);
-        newFlower.transform.position = new Vector3(0, 0, 10);
-        newFlower.GetComponent<Ingredient>().Init("whitebell");
+        newFlower.transform.position = new Vector3(0, 0, 0);
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Ingredient : Item, IPointerClickHandler
+public class Ingredient : Item //, IPointerClickHandler
 {
     private bool initialized = false;
     protected Dictionary<Element, uint> elements = new Dictionary<Element, uint>();
@@ -22,25 +22,24 @@ public class Ingredient : Item, IPointerClickHandler
         public ElementAmountPair[] ElementArray;
     }
 
-    public void Init(string name)
+    public new void Awake()
     {
-        if (initialized) return;
-        initialized = true;
-        this.name = name;
-        Sprite sprite = Resources.Load<Sprite>("Sprites/" + name);
+        base.Awake();
+        string name_without_clone = name.Replace("(Clone)", "").Trim();
+        Sprite sprite = Resources.Load<Sprite>("Sprites/" + name_without_clone);
         GetComponent<SpriteRenderer>().sprite = sprite;
-        TextAsset ingredientTextAsset = Resources.Load<TextAsset>("Ingredients/" + name);
+        TextAsset ingredientTextAsset = Resources.Load<TextAsset>("Ingredients/" + name_without_clone);
         IngredientJson ingredientJson = JsonUtility.FromJson<IngredientJson>(ingredientTextAsset.text);
 
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Ingredient");
         foreach (string ingredientName in ingredientJson.IngredientArray)
         {
+            prefab.name = ingredientName;
             GameObject sub_ingredient = Instantiate(prefab);
             sub_ingredient.transform.SetParent(transform);
             sub_ingredient.transform.position = new Vector3(0, 0, 0);
             sub_ingredient.GetComponent<SpriteRenderer>().enabled = false;
             sub_ingredient.GetComponent<Collider2D>().enabled = false;
-            sub_ingredient.GetComponent<Ingredient>().Init(ingredientName);
         }
 
         foreach (ElementAmountPair pair in ingredientJson.ElementArray)
@@ -86,7 +85,6 @@ public class Ingredient : Item, IPointerClickHandler
 
     public void cut()
     {
-        Debug.Log("Cutting " + name);
         if (transform.childCount == 0) return;
         int sortingOrder = spriteRenderer.sortingOrder;
         Vector3 offsetVector = new Vector3(0, 0, 0);
@@ -151,6 +149,7 @@ public class Ingredient : Item, IPointerClickHandler
         }
     }
 
+    /*
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -162,4 +161,5 @@ public class Ingredient : Item, IPointerClickHandler
             }
         }
     }
+    */
 }
