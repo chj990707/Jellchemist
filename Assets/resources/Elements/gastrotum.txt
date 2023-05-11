@@ -1,0 +1,5 @@
+{
+  "name": "gastrotum",
+  "effect": "구토 유발",
+  "solubility": 10
+}

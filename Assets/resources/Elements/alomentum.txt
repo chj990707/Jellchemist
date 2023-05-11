@@ -1,0 +1,5 @@
+{
+  "name": "alomentum",
+  "effect": "체력 회복",
+  "solubility": 2
+}

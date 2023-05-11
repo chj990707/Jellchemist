@@ -1,0 +1,6 @@
+{
+  "IngredientArray": [],
+  "ElementArray": [{"elementName": "alomentum", "amount": 75},
+    {"elementName": "bittrum", "amount": 100}
+  ]
+}

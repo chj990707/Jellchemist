@@ -1,0 +1,4 @@
+{
+  "IngredientArray": [],
+  "ElementArray": [{"elementName": "gastrotum", "amount": 1000}]
+}

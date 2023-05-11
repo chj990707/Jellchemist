@@ -1,0 +1,5 @@
+{
+  "name": "bittrum",
+  "effect": "쓴맛",
+  "solubility": 10
+}

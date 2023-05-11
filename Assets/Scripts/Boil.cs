@@ -32,10 +32,15 @@ public class Boil : Item, IDropHandler, IPointerClickHandler
             if (timeInt <= 0) return;
             Debug.Log(time + "분 동안 끓이기");
             GameObject water = Instantiate(boiled);
+            Dictionary<Element, uint> dissolved = new Dictionary<Element, uint>();
             foreach (Transform child in transform)
             {
-                if (child.tag == "Ingredient") child.GetComponent<Ingredient>().boil((uint)timeInt, water);
+                if (child.tag == "Ingredient")
+                {
+                    dissolved = child.GetComponent<Ingredient>().boil((uint)timeInt, dissolved);
+                }
             }
+            water.GetComponent<Ingredient>().AddElements(dissolved);
         }
     }
 }
