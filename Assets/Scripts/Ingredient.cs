@@ -63,7 +63,7 @@ public class Ingredient : Item
             int amount = e.boil(time);
             if (amount == 0) continue;
             bool added = false;
-            Element[] water_elements = gameObject.GetComponents<Element>();
+            Element[] water_elements = water.GetComponents<Element>();
             foreach(Element ew in water_elements)
             {
                 if(ew.TryAddAmount(e.getEffect(), amount))
