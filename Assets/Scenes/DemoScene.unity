@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 2010753395}
-  boiled: {fileID: 3123721164946299007, guid: 0689ee95011c84b4c9306c2e8c25613b, type: 3}
+  result: {fileID: 7705262402321143023, guid: 316279ded30e72944b16c6d8ee80c866, type: 3}
 --- !u!61 &1812091396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 2010753398}
   - component: {fileID: 2010753397}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: BoilTimeInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Boil : Item, IDropHandler, IPointerClickHandler
 {
     [SerializeField] GameObject inputField;
-    [SerializeField] GameObject boiled;
+    [SerializeField] GameObject result;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -31,7 +31,8 @@ public class Boil : Item, IDropHandler, IPointerClickHandler
         {
             if (timeInt <= 0) return;
             Debug.Log(time + "분 동안 끓이기");
-            GameObject water = Instantiate(boiled);
+            result.name = "potion";
+            GameObject water = Instantiate(result);
             Dictionary<Element, uint> dissolved = new Dictionary<Element, uint>();
             foreach (Transform child in transform)
             {
